@@ -11,7 +11,7 @@ export const ContactList = () => {
     const normalizedFilter = filters.toLowerCase();
     return contacts.filter(contact => {
       const contactName = contact.name.toLowerCase();
-      const contactNumber = contact.number;
+      const contactNumber = contact.phone;
 
       return (
         contactName.toLowerCase().includes(normalizedFilter) ||
@@ -24,8 +24,8 @@ export const ContactList = () => {
 
   return (
     <List>
-      {filteredContacts.map(({ id, name, number }) => {
-        return <ContactItem key={id} id={id} name={name} number={number} />;
+      {filteredContacts.map(({ id, name, phone }) => {
+        return <ContactItem key={id} id={id} name={name} number={phone} />;
       })}
     </List>
   );

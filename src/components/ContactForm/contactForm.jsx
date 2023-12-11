@@ -1,9 +1,7 @@
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/contactsSlice';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import { nanoid } from 'nanoid';
 
 import {
   Field,
@@ -36,18 +34,22 @@ export const ContactForm = () => {
       <Formik
         initialValues={{
           name: '',
-          number: '',
+          phone: '',
         }}
         validationSchema={contactSchema}
-        onSubmit={(values, actions) => {
+        onSubmit={async (values, actions) => {
           actions.resetForm();
+
           if (contacts.some(contact => contact.name === values.name)) {
             Notify.failure(`${values.name} already in phonebook!`);
             return;
           }
-
-          dispatch(addContact({ ...values, id: nanoid() }));
-          Notify.success(`${values.name} added to your contacts!`);
+          try {
+            await dispatch(saveNewContact(values));
+            Notify.success(`${values.name} added to your contacts!`);
+          } catch (error) {
+            Notify.failure('Something went wrong please try again');
+          }
         }}
       >
         <Form>

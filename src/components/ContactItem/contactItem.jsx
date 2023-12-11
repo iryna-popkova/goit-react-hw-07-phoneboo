@@ -2,16 +2,17 @@ import { ListItem, ContactData, RemoveButton } from './contactItem.styled';
 import { useDispatch } from 'react-redux';
 import { removeContact } from 'redux/operations';
 
-export const ContactItem = ({ id, name, number }) => {
+export const ContactItem = ({ id, name, phone }) => {
   const dispatch = useDispatch();
 
-  function deleteContact(id) {
+  const deleteContact = id => {
     dispatch(removeContact(id));
-  }
+  };
+
   return (
     <ListItem>
       <ContactData>
-        {name}: {number}
+        {name}: {phone}
       </ContactData>
       <RemoveButton type="button" onClick={() => deleteContact(id)}>
         Delete
