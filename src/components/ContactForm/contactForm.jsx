@@ -14,6 +14,7 @@ import {
   ErrorMessage,
 } from './contactForm.styled';
 import { selectContacts } from 'redux/selectors';
+import { saveNewContact } from 'redux/operations';
 
 const contactSchema = Yup.object().shape({
   name: Yup.string()
