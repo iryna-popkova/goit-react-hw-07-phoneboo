@@ -3,6 +3,9 @@ import { Filter } from '../Filter/filter';
 import { ContactForm } from '../ContactForm/contactForm';
 import { Container, Title, SectionTitle, Message } from './App.styled';
 import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { fetchContacts, removeContact, saveNewContact } from 'redux/operations';
 
 export const App = () => {
   const contacts = useSelector(state => state.contacts.contacts);
