@@ -17,11 +17,11 @@ export const fetchContacts = createAsyncThunk(
 
 export const saveNewContact = createAsyncThunk(
   'contacts/addContact',
-  async ({ name, phone }, thunkAPI) => {
+  async ({ name, number }, thunkAPI) => {
     try {
       const contactToSave = await axios.post('phonebook/contacts', {
         name,
-        phone,
+        number,
       });
       return contactToSave.data;
     } catch (error) {

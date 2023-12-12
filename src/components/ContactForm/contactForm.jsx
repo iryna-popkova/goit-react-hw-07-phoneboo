@@ -34,7 +34,7 @@ export const ContactForm = () => {
       <Formik
         initialValues={{
           name: '',
-          phone: '',
+          number: '',
         }}
         validationSchema={contactSchema}
         onSubmit={async (values, actions) => {
